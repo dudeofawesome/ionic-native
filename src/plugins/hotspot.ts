@@ -1,9 +1,9 @@
 import {Plugin, Cordova} from './plugin';
 
-import {Network} from './network.model';
-import {NetworkConfig} from './network-config.model';
-import {ConnectionInfo} from './connection-info.model';
-import {HotspotDevice} from './hotspot-device.model';
+import {Network} from './types/network.type';
+import {NetworkConfig} from './types/network-config.type';
+import {ConnectionInfo} from './types/connection-info.type';
+import {HotspotDevice} from './types/hotspot-device.type';
 
 /**
  * @name Hotspot
