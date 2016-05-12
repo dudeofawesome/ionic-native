@@ -5,6 +5,13 @@ import {NetworkConfig} from './types/network-config.type';
 import {ConnectionInfo} from './types/connection-info.type';
 import {HotspotDevice} from './types/hotspot-device.type';
 
+export {
+    Network,
+    NetworkConfig,
+    ConnectionInfo,
+    HotspotDevice
+}
+
 /**
  * @name Hotspot
  * @description
