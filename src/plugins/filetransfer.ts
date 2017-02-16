@@ -173,6 +173,10 @@ export interface FileTransferError {
  * cd files
  * ls
  * ```
+ *
+ * To store files in a different/publicly accessible directory, please refer to the following link
+ * https://github.com/apache/cordova-plugin-file#where-to-store-files
+ *
  * @interfaces
  * FileUploadOptions
  * FileUploadResult
@@ -223,7 +227,7 @@ export class Transfer {
     successIndex: 2,
     errorIndex: 3
   })
-  upload(fileUrl: string, url: string, options?: FileUploadOptions, trustAllHosts?: boolean): Promise<FileUploadResult | FileTransferError> {
+  upload(fileUrl: string, url: string, options?: FileUploadOptions, trustAllHosts?: boolean): Promise<FileUploadResult> {
     return;
   }
 

@@ -22,6 +22,7 @@ export interface CameraPreviewSize {
 }
 
 /**
+ * @beta
  * @name CameraPreview
  * @description
  * Showing camera preview in HTML
@@ -117,7 +118,7 @@ export class CameraPreview {
   @Cordova({
     sync: true
   })
-  static takePicture(size: CameraPreviewSize): void { }
+  static takePicture(size?: CameraPreviewSize): void { }
 
   /**
    * Register a callback function that receives the original picture and the image captured from the preview box.

@@ -47,7 +47,7 @@ export interface AppRatePreferences {
   /**
    * App Store URLS
    */
-  storeAppUrl?: AppRateStoreAppUrls;
+  storeAppURL?: AppRateStoreAppUrls;
 
 }
 
@@ -61,7 +61,7 @@ export interface AppRateCallbacks {
   /**
    * call back function. called when rate-dialog showing
    */
-  onRateDialogShowed?: Function;
+  onRateDialogShow?: Function;
 
 }
 
@@ -76,6 +76,11 @@ export interface AppRateStoreAppUrls {
    * application URL in GooglePlay
    */
   android?: string;
+
+  /**
+   * application URL in Windows Store
+   */
+  windows?: string;
 
   /**
    * application URL in AppWorld
@@ -103,6 +108,7 @@ export interface AppRateStoreAppUrls {
  *  AppRate.preferences.storeAppURL = {
  *    ios: '<my_app_id>',
  *    android: 'market://details?id=<package_name>',
+ *    windows: 'ms-windows-store://review/?ProductId=<Store_ID>'
  *  };
  *
  * AppRate.promptForRating(false);
@@ -119,7 +125,7 @@ export interface AppRateStoreAppUrls {
   plugin: 'cordova-plugin-apprate',
   pluginRef: 'AppRate',
   repo: 'https://github.com/pushandplay/cordova-plugin-apprate',
-  platforms: ['Android', 'iOS']
+  platforms: ['Android', 'iOS', 'Windows (experimental)']
 })
 export class AppRate {
 

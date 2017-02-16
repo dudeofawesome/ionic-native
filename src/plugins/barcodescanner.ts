@@ -23,6 +23,11 @@ export interface BarcodeScannerOptions {
   disableAnimations?: boolean;
 
   /**
+   * Disable success beep. Supported on iOS only.
+   */
+  disableSuccessBeep?: boolean;
+
+  /**
    * Prompt text. Supported on Android only.
    */
   prompt?: string;
@@ -36,6 +41,16 @@ export interface BarcodeScannerOptions {
    * Orientation. Supported on Android only. Can be set to `portrait` or `landscape`. Defaults to none so the user can rotate the phone and pick an orientation.
    */
   orientation?: string;
+
+  /**
+   * Launch with the torch switched on (if available). Supported on Android only.
+   */
+  torchOn?: boolean;
+
+  /**
+   * Display scanned text for X ms. 0 suppresses it entirely, default 1500. Supported on Android only.
+   */
+  resultDisplayDuration?: number;
 
 }
 

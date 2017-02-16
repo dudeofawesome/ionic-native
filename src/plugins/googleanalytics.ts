@@ -10,6 +10,20 @@ declare var window;
  * - A Cordova 3.0+ project for iOS and/or Android
  * - A Mobile App property through the Google Analytics Admin Console
  * - (Android) Google Play Services SDK installed via [Android SDK Manager](https://developer.android.com/sdk/installing/adding-packages.html)
+ * @usage
+ * ```typescript
+ * import { GoogleAnalytics } from 'ionic-native';
+ *
+ * GoogleAnalytics.startTrackerWithId('YOUR_TRACKER_ID')
+ *    .then(() => {
+ *      console.log('Google analytics is ready now');
+ *      // Tracker is ready
+ *      // You can now track pages or set additional information such as AppVersion or UserId
+ *    })
+ *    .catch(e => console.log('Error starting GoogleAnalytics', e));
+ *
+ *
+ * ```
  */
 @Plugin({
   pluginName: 'GoogleAnalytics',
@@ -27,7 +41,10 @@ export class GoogleAnalytics {
    * @param {number} interval Optional dispatch period in seconds. Defaults to 30.
    * @returns {Promise<any>}
    */
-  @Cordova()
+  @Cordova({
+    successIndex: 2,
+    errorIndex: 3
+  })
   static startTrackerWithId(id: string, interval?: number): Promise<any> { return; }
 
   /**
