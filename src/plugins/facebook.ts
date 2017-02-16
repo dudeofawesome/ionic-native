@@ -1,25 +1,26 @@
 import { Cordova, Plugin } from './plugin';
 
 export interface FacebookLoginResponse {
-
-  status: string;
-
-  authResponse: {
-
+  /**
+   * {connected} The person is logged into Facebook, and has logged into your app.
+   * {not_authorized} The person is logged into Facebook, but has not logged into your app.
+   * {unknown} The person is not logged into Facebook, so you don't know if they've logged into your app. Or FB.logout() was called before and therefore, it cannot connect to Facebook.
+   */
+  status: 'connected' | 'not_authorized' | 'unknown';
+  /** Included if the status is connected */
+  authResponse?: {
     session_key: boolean;
-
+    /** Contains an access token for the person using the app. */
     accessToken: string;
-
+    /** Indicates the UNIX time when the token expires and needs to be renewed. */
     expiresIn: number;
-
     sig: string;
-
-    secret: string;
-
+    /** A signed parameter that contains information about the person using the app. */
+    signedRequest?: string;
+    secret?: string;
+    /** The ID of the person using the app. */
     userID: string;
-
   };
-
 }
 
 /**
@@ -93,9 +94,6 @@ export interface FacebookLoginResponse {
  * @usage
  * ```typescript
  * import { Facebook } from 'ionic-native';
- *
- *
- *
  * ```
  *
  */
@@ -160,25 +158,25 @@ export class Facebook {
    *
    * Resolves with a response like:
    *
-   * ```
+   * ```typescript
    * {
+   *   status: "connected",
    *   authResponse: {
-   *     userID: "12345678912345",
+   *     session_key: true,
    *     accessToken: "kgkh3g42kh4g23kh4g2kh34g2kg4k2h4gkh3g4k2h4gk23h4gk2h34gk234gk2h34AndSoOn",
-   *     session_Key: true,
    *     expiresIn: "5183738",
-   *     sig: "..."
-   *   },
-   *   status: "connected"
+   *     sig: "...",
+   *     userID: "12345678912345"
+   *   }
    * }
    * ```
    *
    * For more information see the [Facebook docs](https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus)
    *
-   * @returns {Promise<any>} Returns a Promise that resolves with a status, or rejects with an error
+   * @returns {Promise<FacebookLoginResponse>} Returns a Promise that resolves with a status, or rejects with an error
    */
   @Cordova()
-  static getLoginStatus(): Promise<any> { return; }
+  static getLoginStatus(): Promise<FacebookLoginResponse> { return; }
 
   /**
    * Get a Facebook access token for using Facebook services.
@@ -191,7 +189,7 @@ export class Facebook {
   /**
    * Show one of various Facebook dialogs. Example of options for a Share dialog:
    *
-   * ```
+   * ```typescript
    * {
    *   method: "share",
    *   href: "http://example.com",
